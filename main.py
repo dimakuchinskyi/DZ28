@@ -1,19 +1,16 @@
-class PrimeGenerator:
-    def __init__(self):
-        self.current = 2
-    def is_prime(self, num):
-        if num < 2:
-            return False
-        for i in range(2, int(num**0.5) + 1):
-            if num % i == 0:
-                return False
-        return True
-    def generate(self):
-        while True:
-            try:
-                if self.is_prime(self.current):
-                    yield self.current
-                self.current += 1
-            except KeyboardInterrupt:
-                print("Generation interrupted!")
-                return
+def average_closure():
+    total_sum = 0
+    count = 0
+    def add_number(number):
+        nonlocal total_sum, count
+        total_sum += number
+        count += 1
+    def get_average():
+        return total_sum / count if count > 0 else 0
+    return add_number, get_average
+add_func, avg_func = average_closure()
+add_func(10)
+add_func(20)
+add_func(30)
+average = avg_func()
+print(average)
