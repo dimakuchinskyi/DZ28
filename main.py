@@ -1,16 +1,17 @@
-def average_closure():
-    total_sum = 0
-    count = 0
-    def add_number(number):
-        nonlocal total_sum, count
-        total_sum += number
-        count += 1
-    def get_average():
-        return total_sum / count if count > 0 else 0
-    return add_number, get_average
-add_func, avg_func = average_closure()
-add_func(10)
-add_func(20)
-add_func(30)
-average = avg_func()
-print(average)
+import random
+class PasswordGenerator:
+    def __init__(self, length, characters):
+        self.length = length
+        self.characters = characters
+    def generate_password(self):
+        password = ""
+        for _ in range(self.length):
+            password += random.choice(self.characters)
+        return password
+length = 8
+characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+generator = PasswordGenerator(length, characters)
+password1 = generator.generate_password()
+print(password1)Z
+password2 = generator.generate_password()
+print(password2)
